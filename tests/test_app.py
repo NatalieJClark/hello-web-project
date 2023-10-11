@@ -54,6 +54,36 @@ def test_post_count_vowels_mercurial(web_client):
     assert response.status_code == 200
     assert response.data.decode('utf-8') == 'There are 4 vowels in "mercurial"'
 
+"""
+When: I make a POST request to /sort-names
+With: names=Joe,Alice,Zoe,Julia,Kieran as the body parameter
+Then: I should get a 200 response and "Alice,Joe,Julia,Kieran,Zoe"
+"""
+def test_post_sort_names_with_list_of_names(web_client):
+    response = web_client.post('/sort-names', data={'names': 'Joe,Alice,Zoe,Julia,Kieran'})
+    assert response.status_code == 200
+    assert response.data.decode('utf-8') == "Alice,Joe,Julia,Kieran,Zoe"
+
+"""
+When: I make a POST request to /sort-names
+With: names=Aaaaa,Aaaaah,Aaaaab as the body parameter
+Then: I should get a 200 response and "Aaaaa,Aaaaab,Aaaaah"
+"""
+def test_post_sort_names_with_differing_end_letter(web_client):
+    response = web_client.post('/sort-names', data={'names': 'Aaaaa,Aaaaah,Aaaaab'})
+    assert response.status_code == 200
+    assert response.data.decode('utf-8') == "Aaaaa,Aaaaab,Aaaaah"
+
+"""
+When: I make a POST request to /sort-names
+With: "" as the body parameter
+Then: I should get a 400 response and "You didn't submit any names!"
+"""
+def test_post_sort_names_with_no_list_of_names(web_client):
+    response = web_client.post('/sort-names')
+    assert response.status_code == 400
+    assert response.data.decode('utf-8') == "You didn't submit any names!"
+
 # === Example Code Below ===
 
 """
