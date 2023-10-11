@@ -61,6 +61,19 @@ def post_sort_names():
     sorted_names = ",".join(sorted(names))
     return sorted_names
 
+# Request:
+# GET /names
+@app.route('/names', methods=['GET'])
+def get_names():
+    if 'add' not in request.args:
+        return "You didn't submit names to add to the list 'Alice, Julia, Karim'", 400
+    add_name_list = request.args['add'].split(",")
+    names = ['Alice', 'Julia', 'Karim']
+    for name in add_name_list:
+        names.append(name)
+    sorted_names = sorted(names)
+    return ", ".join(sorted_names)
+
 # == Example Code Below ==
 
 # GET /emoji
