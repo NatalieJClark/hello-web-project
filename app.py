@@ -6,12 +6,19 @@ app = Flask(__name__)
 
 # == Your Routes Here ==
 
+# Request:
+# POST /count_vowels
+@app.route('/count_vowels', methods=['POST'])
+def post_count_vowels():
+    text = request.form['text']
+    vowel_count = 0
+    for char in text:
+        if char in "aeiou":
+            vowel_count += 1
+    return f'There are {vowel_count} vowels in "{text}"'
 
 # Request:
 # GET /wave
-#   With query parameters: name=Leo
-# Expected response (200 OK):
-#   I am waving at Leo
 
 @app.route('/wave',  methods=['GET'])
 def get_wave():
@@ -20,9 +27,6 @@ def get_wave():
 
 # Request:
 # POST /submit
-#   With body parameters: name=Leo, message=Hello world
-# Expected response (2OO OK):
-#   Thanks Leo, you sent this message: "Hello world"
 
 @app.route('/submit', methods=['POST'])
 def post_submit():
