@@ -8,6 +8,6 @@
 ## Aims
 
 I used this project to:
-[x] Learn how to set up a Flask project
-[x] Learn how to build routes
-[x] Learn how to test-drive routes
+- [ x ] Learn how to set up a Flask project
+- [ x ] Learn how to build routes
+- [ x ] Learn how to test-drive routes
