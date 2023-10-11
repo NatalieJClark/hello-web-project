@@ -7,15 +7,21 @@ app = Flask(__name__)
 # == Your Routes Here ==
 
 # Request:
-# POST /count_vowels
-@app.route('/count_vowels', methods=['POST'])
-def post_count_vowels():
-    text = request.form['text']
-    vowel_count = 0
-    for char in text:
-        if char in "aeiou":
-            vowel_count += 1
-    return f'There are {vowel_count} vowels in "{text}"'
+# GET /hello?name=David
+
+@app.route('/hello', methods=['GET'])
+def hello():
+    name = request.args['name']
+    return f"Hello {name}!"
+
+# Request:
+#POST /goodbye
+#   With body parameter: name=Alice
+
+@app.route('/goodbye', methods=['POST'])
+def goodbye():
+    name = request.form['name']
+    return f"Goodbye {name}!"
 
 # Request:
 # GET /wave
@@ -35,21 +41,25 @@ def post_submit():
     return f'Thanks {name}, you sent this message: "{message}"'
 
 # Request:
-# GET /hello?name=David
-
-@app.route('/hello', methods=['GET'])
-def hello():
-    name = request.args['name']
-    return f"Hello {name}!"
+# POST /count_vowels
+@app.route('/count_vowels', methods=['POST'])
+def post_count_vowels():
+    text = request.form['text']
+    vowel_count = 0
+    for char in text:
+        if char in "aeiou":
+            vowel_count += 1
+    return f'There are {vowel_count} vowels in "{text}"'
 
 # Request:
-#POST /goodbye
-#   With body parameter: name=Alice
-
-@app.route('/goodbye', methods=['POST'])
-def goodbye():
-    name = request.form['name']
-    return f"Goodbye {name}!"
+# POST /sort-names
+@app.route('/sort-names', methods=['POST'])
+def post_sort_names():
+    if 'names' not in request.form:
+        return "You didn't submit any names!", 400
+    names = request.form['names'].split(",")
+    sorted_names = ",".join(sorted(names))
+    return sorted_names
 
 # == Example Code Below ==
 
