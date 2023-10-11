@@ -16,7 +16,7 @@ app = Flask(__name__)
 @app.route('/wave',  methods=['GET'])
 def get_wave():
     name = request.args['name']
-    return f"I am waving at {name}\n"
+    return f"I am waving at {name}"
 
 # Request:
 # POST /submit
