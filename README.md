@@ -6,7 +6,7 @@
 - It includes a coach assessed challenge following the Challenge objectives below
 - It is based on a Makers Flask web & database starter project, so it contains quite a lot of example code!!
 - It contains lots of practise code for Flask routes in `app.py`. Requests can be made to these routes with curl (see [Setup](#setup))
-- Some of these routes were test-driven and the tests can be found in `tests/test_app.py`
+- Some of these routes were test-driven. The tests can be found in `tests/test_app.py` and the design recipes in the relevant `route_recipe.md` file
 
 ## Objectives
 
